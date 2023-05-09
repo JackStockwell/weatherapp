@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background-dark: #05668D;
+    --background-light: #028090;
+    --light: #F0F3BD;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2ch;
+    background: center / cover no-repeat url('../assets/backgrounds/wave-haikei.svg');
+}
+
+header h1 {
+    padding: 0.5ch;
+    background: #028090;
+    border-radius: 0.5rem;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.search-box {
+    grid-column: span 3;
+}
