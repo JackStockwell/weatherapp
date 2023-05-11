@@ -33,6 +33,16 @@ function searchButton (event) {
 
 function locationSearch(location) {
     console.log(location)
+    var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weatherKey}`
+    console.log(apiURL)
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            currentLocation.lat = data[0].lat
+            currentLocation.lon = data[0].lon
+            weatherSearch(currentLocation)
+        })
 }
 
 
