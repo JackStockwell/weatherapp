@@ -17,7 +17,7 @@
             <div>
                 <h2>Search</h2>
                 <p>Use the box below to search!</p>
-                <form onsubmit="searchButton(event)">
+                <form onsubmit="newSearch(event)">
                     <label for="location">City</label>
                     <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\-]+" title="Invalid input">
                     <input id="search-button" clas="btn" type="submit">
@@ -26,7 +26,10 @@
             </div>
             <div>
                 <h3>Recent Searches</h3>
-                <p>London</p>
+                <ul class="recent">
+                    <li>London</li>
+                    <li>New York</li>
+                </ul>
             </div>
         </section>
 

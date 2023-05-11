@@ -7,15 +7,7 @@ const weatherDayMax = 5;
 
 var locationInputEl = document.querySelector('#location-text')
 
-function recentLoad(location) {
-    
-}
-
-function recentSave() {
-    
-}
-
-function searchButton (event) {
+function newSearch (event) {
     event.preventDefault()
     if (locationInputEl.value === "") {
         invalidHeader = document.querySelector('.invalid-loc')
@@ -25,6 +17,7 @@ function searchButton (event) {
         }, 2000)
         return;
     } else {
+        // Save value to local storage
         locationSearch(locationInputEl.value)
     }
 }
@@ -52,7 +45,13 @@ function weatherSearch(lat, lon) {
         })
 }
 
+var liEle = document.querySelectorAll('li')
 
+liEle.forEach((element) => {
+    element.addEventListener("click", (event) => {
+        locationSearch(event.target.innerText)
+    })
+}) 
 
 // THEN Search for it via the API,
 // IF a result is found, I THEN retrieve the lat and lon co-ords
