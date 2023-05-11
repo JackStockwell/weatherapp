@@ -14,12 +14,20 @@
 
     <main>
         <section class="search-box">
-            <h2>Search</h2>
-            <p>Use the box below to search!</p>
-            <label for="location">City</label>
-            <input name="location" id="location-text" class="input" type="text">
-            <button id="search-button" clas="btn" onclick="searchButton(event)">Search!</button>
-            <h3 class="invalid-loc"></h3>
+            <div>
+                <h2>Search</h2>
+                <p>Use the box below to search!</p>
+                <form onsubmit="searchButton(event)">
+                    <label for="location">City</label>
+                    <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\-]+" title="Invalid input">
+                    <input id="search-button" clas="btn" type="submit">
+                </form>
+                <h3 class="invalid-loc"></h3>
+            </div>
+            <div>
+                <h3>Recent Searches</h3>
+                <p>London</p>
+            </div>
         </section>
 
         <div>

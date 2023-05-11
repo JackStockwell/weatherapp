@@ -3,17 +3,15 @@
 const weatherKey = '632b6159be10915c53139465f83c756e';
 const weatherDayMax = 5;
 
-var currentLocation = 
-{
-    lat: 0,
-    lon: 0
-}
-
 // Event listener to take the inputted text value from the search bar
 
 var locationInputEl = document.querySelector('#location-text')
 
-function locationSave(location) {
+function recentLoad(location) {
+    
+}
+
+function recentSave() {
     
 }
 
@@ -39,9 +37,18 @@ function locationSearch(location) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            currentLocation.lat = data[0].lat
-            currentLocation.lon = data[0].lon
-            weatherSearch(currentLocation)
+            var currentLat = data[0].lat;
+            var currentLon = data[0].lon;
+            weatherSearch(currentLat, currentLon);
+        })
+}
+
+function weatherSearch(lat, lon) {
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
         })
 }
 
