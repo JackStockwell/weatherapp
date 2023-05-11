@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css"/>
-    <title>Document</title>
+    <title>Pocket Weather!</title>
 </head>
 <body>
     <header>
@@ -16,14 +16,43 @@
         <section class="search-box">
             <h2>Search</h2>
             <p>Use the box below to search!</p>
-            <input type="text">
-            <button>Search!</button>
+            <label for="location">City</label>
+            <input name="location" id="location-text" class="input" type="text">
+            <button id="search-button" clas="btn" onclick="searchButton(event)">Search!</button>
+            <h3 class="invalid-loc"></h3>
         </section>
 
-        <section class="current-weather">
+        <div>
+            <section class="current-weather">
+                <h2>Location</h2>
+                <div>
+    
+                </div>
+            </section>
 
-        </section>
+            <section class="day-1">
+                <h2>Location</h2>
+                <div>
+                    
+                </div>
+            </section>
+
+            <section class="day-1">
+                <h2>Location</h2>
+                <div>
+                    
+                </div>
+            </section>
+
+            <section class="day-1">
+                <h2>Location</h2>
+                <div>
+                    
+                </div>
+            </section>
+        </div>
 
     </main>
+    <script src="./js/script.js"></script>
 </body>
 </html>
