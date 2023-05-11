@@ -3,21 +3,11 @@
 const weatherKey = '632b6159be10915c53139465f83c756e';
 const weatherDayMax = 5;
 
-var currentLocation = 
-{
-    lat: 0,
-    lon: 0
-}
-
 // Event listener to take the inputted text value from the search bar
 
 var locationInputEl = document.querySelector('#location-text')
 
-function locationSave(location) {
-    
-}
-
-function searchButton (event) {
+function newSearch (event) {
     event.preventDefault()
     if (locationInputEl.value === "") {
         invalidHeader = document.querySelector('.invalid-loc')
@@ -27,15 +17,41 @@ function searchButton (event) {
         }, 2000)
         return;
     } else {
+        // Save value to local storage
         locationSearch(locationInputEl.value)
     }
 }
 
 function locationSearch(location) {
     console.log(location)
+    var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weatherKey}`
+    console.log(apiURL)
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            var currentLat = data[0].lat;
+            var currentLon = data[0].lon;
+            weatherSearch(currentLat, currentLon);
+        })
 }
 
+function weatherSearch(lat, lon) {
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+}
 
+var liEle = document.querySelectorAll('li')
+
+liEle.forEach((element) => {
+    element.addEventListener("click", (event) => {
+        locationSearch(event.target.innerText)
+    })
+}) 
 
 // THEN Search for it via the API,
 // IF a result is found, I THEN retrieve the lat and lon co-ords
