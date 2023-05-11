@@ -20,18 +20,29 @@ header {
 
 header h1 {
     padding: 0.5ch;
-    background: #028090;
     border-radius: 0.5rem;
+    border: 2px solid #028090;
+    color: white;
 }
 
 main {
     width: 90%;
     margin: 0 auto;
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    padding: 1rem;
 }
 
 .search-box {
-    grid-column: span 3;
+
+}
+
+@media (min-width: 40em) {
+    main {
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: unset;
+    }
+
 }
