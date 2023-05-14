@@ -41,9 +41,52 @@ function weatherSearch(lat, lon) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            currentWeather(data)
         })
 }
+
+var currentWeatherEl = document.getElementsByClassName('current-weather')
+
+function currentWeather(data) {
+
+    const currWeather = 
+    `
+    <div class="current-name">
+        <h2>Current Weather</h2>
+        <h3>${data.name}</h3>
+    </div>
+    <div class="current-weather">
+        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
+        <p>${data.weather[0].description}</p>
+    <div class="current-temp">
+        <p>Temp: ${data.main.temp} °C</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <div class="t-max-min">
+            <p>Max: ${data.main.temp_max} °C</p>
+            <p>Min: ${data.main.temp_min} °C</p>
+        </div>
+    </div>
+    <div class="current-wind">
+        <p class="wind-arrow">&#8595</p>
+        <p>${data.wind.speed} M/s</p>
+    </div>
+    `
+
+    console.log(currWeather)
+    console.log(currentWeatherEl)
+    currentWeatherEl[0].innerHTML = currWeather
+
+    console.log(data)
+    console.log(data.name)
+    console.log(data.main.temp)
+    windArrow(data.wind.deg)
+}
+
+function windArrow(deg) {
+    var wind = document.querySelector('.wind-arrow')
+    wind.style.transform = `rotate(${deg})`
+}
+
 
 var liEle = document.querySelectorAll('li')
 
