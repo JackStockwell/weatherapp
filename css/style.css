@@ -5,9 +5,13 @@
 }
 
 :root {
-    --background-dark: #05668D;
+    --background-dark: #00000080;
     --background-light: #028090;
-    --light: #F0F3BD;
+    --light: #f0f3bd80;
+    --fontlight: 'Roboto Condensed', sans-serif;
+    --fontheader: 'Roboto', sans-serif;
+    --h2color: #fff;
+    --padding: 0.5rem;
 }
 
 header {
@@ -15,30 +19,110 @@ header {
     justify-content: center;
     width: 100%;
     padding: 2ch;
-    background: center / cover no-repeat url('../assets/backgrounds/wave-haikei.svg');
+    background: center / cover no-repeat url('../assets/backgrounds/headerbg.svg');
 }
 
 header h1 {
     padding: 0.5ch;
     border-radius: 0.5rem;
-    border: 2px solid #028090;
-    color: white;
+    border: 2px solid var(--background-light);
+    background: var(--background-dark);
+    color: var(--h2color);
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5 ,h6 {
+    font-family: var(--fontheader);
+}
+
+body {
+    background: center / cover no-repeat url(../assets/backgrounds/background16.9.svg);    
 }
 
 main {
     width: 90%;
     margin: 0 auto;
     display: grid;
+    font-family: sans-serif;
     gap: 1rem;
     grid-template-columns: 1fr;
     padding: 1rem;
+    font-family: var(--fontlight);
+}
+
+/* USED FOR ALL SUB HEADERS */
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15ch;
+    color: var(--h2color)
+}
+
+/* CONTAINERS */
+
+/* SEARCH CARDS */
+
+.search-box-content {
+    background: var(--light);
+    margin: 1rem 0;
+}
+
+/* WEATHER CARDS */
+
+.weather-container {
+    background: var(--light);
+    border-radius: var(--padding);
+    padding: var(--padding);
+    margin: 1rem 0;
+    box-shadow: 0px 0px 6px 1px #000000;
 }
 
 /* CURRENT WEATHER */
 
+.weather {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.current-child {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.current-child > * {
+    padding: 0.5rem 0
+}
+
+/* CONDITIONS */
+
+.conditions img {
+    max-width: 100px;
+}
+
+.conditions p {
+    text-transform: capitalize;
+}
+
+/* TEMP MAX/MIN/CURRENT TEMP/HUM */
+
+.temp p:nth-child(odd) {
+    font-size: 3ch;
+}
+
+.temp p:nth-child(even) {
+    font-style: italic;
+}
+
+/* WIND CONTAINER */
+
 .wind-arrow {
     transform: rotate(0);
-    display: inline-block;
+    transform: scale(2);
 }
 
 @media (min-width: 40em) {

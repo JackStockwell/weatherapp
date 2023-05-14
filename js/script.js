@@ -32,11 +32,11 @@ function locationSearch(location) {
             console.log(data)
             var currentLat = data[0].lat;
             var currentLon = data[0].lon;
-            weatherSearch(currentLat, currentLon);
+            weatherCurrentSearch(currentLat, currentLon);
         })
 }
 
-function weatherSearch(lat, lon) {
+function weatherCurrentSearch(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`
     fetch(apiURL)
         .then(response => response.json())
@@ -45,41 +45,52 @@ function weatherSearch(lat, lon) {
         })
 }
 
-var currentWeatherEl = document.getElementsByClassName('current-weather')
+var currentWeatherEl = document.getElementsByClassName('current')
 
 function currentWeather(data) {
 
     const currWeather = 
     `
+    <h2>Current Weather</h2>
     <div class="current-name">
-        <h2>Current Weather</h2>
         <h3>${data.name}</h3>
+        <p>${dayjs().format('DD/MM/YY')}</p>
     </div>
-    <div class="current-weather">
-        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
-        <p>${data.weather[0].description}</p>
-    <div class="current-temp">
-        <p>Temp: ${data.main.temp} °C</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <div class="t-max-min">
-            <p>Max: ${data.main.temp_max} °C</p>
-            <p>Min: ${data.main.temp_min} °C</p>
+
+    <div class="weather">
+
+        <div class="conditions current-child">
+            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
+            <p>${data.weather[0].description}</p>
+        </div>
+
+        <div class="temp current-child">
+            <p>${data.main.temp}°C</p>
+            <p>Current Temp</p>
+            <p>${data.main.humidity}%</p>
+            <p>Current Humidity</p>
+        </div>
+
+        <div class="t-max-min temp current-child">
+            <p>${data.main.temp_max}°C</p>
+            <p>Temp. Max</p>
+            <p>${data.main.temp_min}°C</p>
+            <p>Temp. Min</p>
+        </div>
+        <div class="wind current-child">
+            <p>N</p>
+            <p class="wind-arrow">&#8595</p>
+            <p>${data.wind.speed} MPH</p>
         </div>
     </div>
-    <div class="current-wind">
-        <p class="wind-arrow">&#8595</p>
-        <p>${data.wind.speed} M/s</p>
-    </div>
     `
-
-    console.log(currWeather)
-    console.log(currentWeatherEl)
-    currentWeatherEl[0].innerHTML = currWeather
-
-    console.log(data)
-    console.log(data.name)
-    console.log(data.main.temp)
     windArrow(data.wind.deg)
+}
+
+function fiveDayForecast(data) {
+    const day = {
+        
+    }
 }
 
 function windArrow(deg) {
