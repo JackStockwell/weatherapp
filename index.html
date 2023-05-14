@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <title>Pocket Weather!</title>
 </head>
 <body>
@@ -14,53 +18,70 @@
 
     <main>
         <section class="search-box">
-            <div>
-                <h2>Search</h2>
-                <p>Use the box below to search!</p>
-                <form onsubmit="newSearch(event)">
-                    <label for="location">City</label>
-                    <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\- ]+" title="Invalid input">
-                    <input id="search-button" clas="btn" type="submit">
-                </form>
-                <h3 class="invalid-loc"></h3>
-            </div>
-            <div>
-                <h3>Recent Searches</h3>
-                <ul class="recent">
-                    <li>London</li>
-                    <li>New York</li>
-                </ul>
+            <h2>Search</h2>
+            <div class="weather-container">
+                <div>
+                    <p>Enter your town/city in the box below to get the latest weather conditions and a five day forecast.</p>
+                    <br>
+                    <form onsubmit="newSearch(event)">
+                        <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\- ]+" title="Invalid input">
+                        <br>
+                        <input id="search-button" clas="btn" type="submit" value="Search">
+                    </form>
+                    <h3 class="invalid-loc"></h3>
+                </div>
+                <div>
+                    <h3>Recent Searches</h3>
+                    <ul class="recent">
+                        <li>London</li>
+                        <li>New York</li>
+                    </ul>
+                </div>
             </div>
         </section>
-
-        <div>
-            <section class="current-weather">
-
+        <div id="forecast-div">
+            <h2>Current Weather</h2>
+            <section class="current weather-container">
+                <div class="current-name">
+                    <h3>Example</h3>
+                </div>
+                <div class="weather">
+            
+                    <div class="conditions current-child">
+                        <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Icon of ${data.weather[0].description}">
+                        <p>Sunny Spells</p>
+                    </div>
+            
+                    <div class="temp current-child">
+                        <p>20°C</p>
+                        <p>Current Temp</p>
+                        <p>50%</p>
+                        <p>Current Humidity</p>
+                    </div>
+            
+                    <div class="t-max-min temp current-child">
+                        <p>22°C</p>
+                        <p>T.Max</p>
+                        <p>16°C</p>
+                        <p>T.Min</p>
+                    </div>
+                    <div class="wind current-child">
+                        <p>N</p>
+                        <p class="wind-arrow">&#8595</p>
+                        <p>2 MPH</p>
+                    </div>
+                </div>
             </section>
-
-            <section class="5days">
-                <h2>Location</h2>
+            <div class="forecast">
+                <h2>5 Day Forecast</h2>
                 <div>
                     
                 </div>
-            </section>
-
-            <section class="day-1">
-                <h2>Location</h2>
-                <div>
-                    
-                </div>
-            </section>
-
-            <section class="day-1">
-                <h2>Location</h2>
-                <div>
-                    
-                </div>
-            </section>
+            </div>
         </div>
 
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js" integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
