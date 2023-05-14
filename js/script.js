@@ -90,7 +90,7 @@ function currentWeather(data) {
         <div class="wind current-child">
             <p>N</p>
             <p class="wind-arrow">&#8595</p>
-            <p>${data.wind.speed} MPH</p>
+            <p>${data.wind.speed} m/s</p>
         </div>
     </div>
     `
@@ -102,8 +102,16 @@ function currentWeather(data) {
 var fiveDayEl = document.getElementsByClassName('')
 
 function fiveDayForecast(data) {
-    
+    // Date, icon, temp, wind and humidity
     console.log(data)
+    for (var i = 0; 0 < data.list.length; i++) {
+        var date = data.list[i].dt_txt.split(' ')
+        if (date[1] === "12:00:00") {
+            console.log(data.list[i].weather[0].description)
+            console.log(data.list[i].weather[0].description)
+        }
+    }
+
     // const day = 
     // `
     // <div class="name">
@@ -142,7 +150,7 @@ function fiveDayForecast(data) {
 
 function windArrow(deg) {
     var wind = document.querySelector('.wind-arrow')
-    wind.style.transform = `rotate(${deg})`
+    wind.style.transform = `rotate(${deg}deg)`
 }
 
 
