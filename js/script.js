@@ -41,9 +41,39 @@ function weatherSearch(lat, lon) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            currentWeather(data)
         })
 }
+
+var currentWeatherEl = document.getElementsByClassName('current-weather')
+
+function currentWeather(data) {
+
+    const currWeather = 
+    `
+    <h2>Current Weather</h2>
+    <h3>${data.name}</h3>
+    <div>
+        <p>${data.weather[0].description} <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"> </p>
+        <p>Temp: ${data.main.temp} °C</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <p>${data.wind.deg}
+    </div>
+    <hr>
+    <div>
+        <p>Max: ${data.main.temp_max} °C</p>
+        <p>Min: ${data.main.temp_min} °C</p>
+    </div>
+    `
+    console.log(currWeather)
+    console.log(currentWeatherEl)
+    currentWeatherEl[0].innerHTML = currWeather
+
+    console.log(data)
+    console.log(data.name)
+    console.log(data.main.temp)
+}
+
 
 var liEle = document.querySelectorAll('li')
 
