@@ -32,11 +32,12 @@ function locationSearch(location) {
             console.log(data)
             var currentLat = data[0].lat;
             var currentLon = data[0].lon;
-            weatherCurrentSearch(currentLat, currentLon);
+            weatherCurrent(currentLat, currentLon);
+            weatherFiveDay(currentLat, currentLon);
         })
 }
 
-function weatherCurrentSearch(lat, lon) {
+function weatherCurrent(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`
     fetch(apiURL)
         .then(response => response.json())
@@ -45,19 +46,28 @@ function weatherCurrentSearch(lat, lon) {
         })
 }
 
-var currentWeatherEl = document.getElementsByClassName('current')
+function weatherFiveDay(lat, lon) {
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`
+    console.log(apiURL)
+    fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+        fiveDayForecast(data)
+    })
+}
+
+var currentWeatherEl = document.getElementsByClassName('current-weather')
 
 function currentWeather(data) {
 
     const currWeather = 
     `
-    <h2>Current Weather</h2>
-    <div class="current-name">
+    <div class="name">
         <h3>${data.name}</h3>
         <p>${dayjs().format('DD/MM/YY')}</p>
     </div>
 
-    <div class="weather">
+    <div class="weather-display">
 
         <div class="conditions current-child">
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
@@ -84,13 +94,50 @@ function currentWeather(data) {
         </div>
     </div>
     `
+    currentWeatherEl[0].innerHTML = currWeather
+
     windArrow(data.wind.deg)
 }
 
+var fiveDayEl = document.getElementsByClassName('')
+
 function fiveDayForecast(data) {
-    const day = {
-        
-    }
+    
+    console.log(data)
+    // const day = 
+    // `
+    // <div class="name">
+    //     <h3>${data.name}</h3>
+    //     <p>${dayjs().format('DD/MM/YY')}</p>
+    // </div>
+
+    // <div class="weather-display">
+
+    //     <div class="conditions current-child">
+    //         <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
+    //         <p>${data.weather[0].description}</p>
+    //     </div>
+
+    //     <div class="temp current-child">
+    //         <p>${data.main.temp}°C</p>
+    //         <p>Current Temp</p>
+    //         <p>${data.main.humidity}%</p>
+    //         <p>Current Humidity</p>
+    //     </div>
+
+    //     <div class="t-max-min temp current-child">
+    //         <p>${data.main.temp_max}°C</p>
+    //         <p>Temp. Max</p>
+    //         <p>${data.main.temp_min}°C</p>
+    //         <p>Temp. Min</p>
+    //     </div>
+    //     <div class="wind current-child">
+    //         <p>N</p>
+    //         <p class="wind-arrow">&#8595</p>
+    //         <p>${data.wind.speed} MPH</p>
+    //     </div>
+    // </div>
+    // `
 }
 
 function windArrow(deg) {
