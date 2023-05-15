@@ -99,25 +99,45 @@ function currentWeather(data) {
     windArrow(data.wind.deg)
 }
 
-var fiveDayEl = document.getElementsByClassName('')
+var fiveDayEl = document.getElementsByClassName('forecast-weather')
+console.log(fiveDayEl)
 
 function fiveDayForecast(data) {
     // Date, icon, temp, wind and humidity
     console.log(data)
-    for (var i = 0; 0 < data.list.length; i++) {
+    for (i = 0; 0 < data.list.length; i++) {
         var date = data.list[i].dt_txt.split(' ')
+
         if (date[1] === "12:00:00") {
+            console.log(date[0])
+
+            var dayContent = 
+
+            `            
+            <div class="name">
+                <h3>${data.city.name}</h3>
+                <p>${date[0]}</p>
+            </div>
+            `
+            
+            var newDay = document.createElement('div')
+            newDay.innerHTML = dayContent
+
+            fiveDayEl[0].appendChild(newDay)
+
+
+
+            
             console.log(data.list[i].weather[0].description)
-            console.log(data.list[i].weather[0].description)
+            console.log(data.list[i].main.humidity)
+            console.log(data.list[i].main.temp_max)
+            console.log(data.list[i].main.temp_max)
         }
     }
 
     // const day = 
     // `
-    // <div class="name">
-    //     <h3>${data.name}</h3>
-    //     <p>${dayjs().format('DD/MM/YY')}</p>
-    // </div>
+
 
     // <div class="weather-display">
 
