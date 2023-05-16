@@ -48,12 +48,12 @@ function weatherCurrent(lat, lon) {
 
 function weatherFiveDay(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`
-    console.log(apiURL)
+    console.log(apiURL);
     fetch(apiURL)
     .then(response => response.json())
     .then(data => {
         fiveDayForecast(data)
-    })
+    });
 }
 
 var currentWeatherEl = document.getElementsByClassName('current-weather')
@@ -67,7 +67,7 @@ function currentWeather(data) {
         <p>${dayjs().format('DD/MM/YY')}</p>
     </div>
 
-    <div class="weather-display">
+    <div class="current-display">
 
         <div class="conditions current-child">
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
@@ -99,13 +99,17 @@ function currentWeather(data) {
     windArrow(data.wind.deg)
 }
 
-var fiveDayEl = document.getElementsByClassName('forecast-weather')
+var fiveDayEl = document.querySelector('.forecast-weather')
 console.log(fiveDayEl)
 
 function fiveDayForecast(data) {
     // Date, icon, temp, wind and humidity
+    console.log(fiveDayEl)
+    fiveDayEl.innerHTML = ""
+
     console.log(data)
     for (i = 0; 0 < data.list.length; i++) {
+
         var date = data.list[i].dt_txt.split(' ')
 
         if (date[1] === "12:00:00") {
@@ -113,18 +117,20 @@ function fiveDayForecast(data) {
 
             var dayContent = 
 
-            `            
-            <div class="name">
-                <h3>${data.city.name}</h3>
-                <p>${date[0]}</p>
+            `
+            <div class="weather-container">            
+                <div class="name">
+                    <h3>${data.city.name}</h3>
+                    <p>${date[0]}</p>
+                </div>
             </div>
             `
-            
+
             var newDay = document.createElement('div')
             newDay.innerHTML = dayContent
 
-            fiveDayEl[0].appendChild(newDay)
-
+            fiveDayEl.appendChild(newDay)
+            
 
 
             
