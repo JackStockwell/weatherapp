@@ -80,7 +80,7 @@ h2 {
 
 /* CURRENT WEATHER */
 
-.current-child {
+.child {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -88,14 +88,14 @@ h2 {
     align-items: center;
 }
 
+.child > * {
+    padding: 0.5rem 0
+}
+
 .current-display {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.current-child > * {
-    padding: 0.5rem 0
+    gap: 0.5rem;
 }
 
 /* FIVE DAY FORECAST */
@@ -106,8 +106,8 @@ h2 {
 }
 
 .forecast-content {
-    display: flex;
-    flex-flow: column nowrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
 }
 
@@ -117,7 +117,8 @@ h2 {
     max-width: 100px;
 }
 
-.conditions p {
+.conditions {
+    text-align: center;
     text-transform: capitalize;
 }
 
@@ -152,6 +153,11 @@ h2 {
         grid-template-columns: repeat(5 , 1fr);
         gap: 1rem;
         text-align: center;
+    }
+    
+    .forecast-content {
+        display: flex;
+        flex-flow: column nowrap;
     }
 }
     
