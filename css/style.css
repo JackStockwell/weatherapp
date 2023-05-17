@@ -105,6 +105,12 @@ h2 {
     flex-flow: column nowrap;
 }
 
+.forecast-content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+}
+
 /* CONDITIONS */
 
 .conditions img {
