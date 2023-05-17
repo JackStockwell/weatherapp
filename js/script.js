@@ -48,12 +48,12 @@ function weatherCurrent(lat, lon) {
 
 function weatherFiveDay(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`
-    console.log(apiURL)
+    console.log(apiURL);
     fetch(apiURL)
     .then(response => response.json())
     .then(data => {
         fiveDayForecast(data)
-    })
+    });
 }
 
 var currentWeatherEl = document.getElementsByClassName('current-weather')
@@ -67,7 +67,7 @@ function currentWeather(data) {
         <p>${dayjs().format('DD/MM/YY')}</p>
     </div>
 
-    <div class="weather-display">
+    <div class="current-display">
 
         <div class="conditions current-child">
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
@@ -99,39 +99,72 @@ function currentWeather(data) {
     windArrow(data.wind.deg)
 }
 
-var fiveDayEl = document.getElementsByClassName('')
+var fiveDayEl = document.querySelector('.forecast-weather')
+console.log(fiveDayEl)
 
 function fiveDayForecast(data) {
     // Date, icon, temp, wind and humidity
+    console.log(fiveDayEl)
+    fiveDayEl.innerHTML = ""
+
     console.log(data)
-    for (var i = 0; 0 < data.list.length; i++) {
-        var date = data.list[i].dt_txt.split(' ')
+    for (i = 0; 0 < data.list.length; i++) {
+            
+            let date = data.list[i].dt_txt.split(' ')
+            
         if (date[1] === "12:00:00") {
-            console.log(data.list[i].weather[0].description)
-            console.log(data.list[i].weather[0].description)
+
+            var dayContent = 
+
+            `
+            <div class="weather-container">            
+                <div class="name">
+                    <h3>${data.city.name}</h3>
+                    <p>${date[0]}</p>
+                </div>
+                <div class="conditions current-child">
+                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Icon of ${data.list[i].weather[0].description}">
+                    <p>${data.list[i].weather[0].description}</p>
+                </div>
+                <div class="temp forecast-content">
+                    <p>${data.list[i].main.temp}°C</p>
+                    <p>Max Temp</p>
+                    <p>${data.list[i].main.humidity}%</p>
+                    <p>Humidity</p>
+                </div>
+                <div class="wind current-child">
+                    <p>N</p>
+                    <p class="wind-arrow">&#8595</p>
+                    <p>${data.list.wind.speed} MPH</p>
+                </div>
+            </div>
+            `
+
+            var newDay = document.createElement('div')
+            newDay.innerHTML = dayContent
+
+            fiveDayEl.appendChild(newDay)
         }
     }
 
+
     // const day = 
     // `
-    // <div class="name">
-    //     <h3>${data.name}</h3>
-    //     <p>${dayjs().format('DD/MM/YY')}</p>
-    // </div>
+
 
     // <div class="weather-display">
 
-    //     <div class="conditions current-child">
-    //         <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
-    //         <p>${data.weather[0].description}</p>
-    //     </div>
+        // <div class="conditions current-child">
+        //     <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
+        //     <p>${data.weather[0].description}</p>
+        // </div>
 
-    //     <div class="temp current-child">
-    //         <p>${data.main.temp}°C</p>
-    //         <p>Current Temp</p>
-    //         <p>${data.main.humidity}%</p>
-    //         <p>Current Humidity</p>
-    //     </div>
+    // <div class="temp current-child">
+    //     <p>${data.main.temp}°C</p>
+    //     <p>Current Temp</p>
+    //     <p>${data.main.humidity}%</p>
+    //     <p>Current Humidity</p>
+    // </div>
 
     //     <div class="t-max-min temp current-child">
     //         <p>${data.main.temp_max}°C</p>
@@ -139,11 +172,11 @@ function fiveDayForecast(data) {
     //         <p>${data.main.temp_min}°C</p>
     //         <p>Temp. Min</p>
     //     </div>
-    //     <div class="wind current-child">
-    //         <p>N</p>
-    //         <p class="wind-arrow">&#8595</p>
-    //         <p>${data.wind.speed} MPH</p>
-    //     </div>
+        // <div class="wind current-child">
+        //     <p>N</p>
+        //     <p class="wind-arrow">&#8595</p>
+        //     <p>${data.wind.speed} MPH</p>
+        // </div>
     // </div>
     // `
 }
