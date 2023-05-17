@@ -69,25 +69,25 @@ function currentWeather(data) {
 
     <div class="current-display">
 
-        <div class="conditions current-child">
+        <div class="conditions child">
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
             <p>${data.weather[0].description}</p>
         </div>
 
-        <div class="temp current-child">
+        <div class="temp child">
             <p>${data.main.temp}°C</p>
             <p>Current Temp</p>
             <p>${data.main.humidity}%</p>
             <p>Current Humidity</p>
         </div>
 
-        <div class="t-max-min temp current-child">
+        <div class="temp child">
             <p>${data.main.temp_max}°C</p>
             <p>Temp. Max</p>
             <p>${data.main.temp_min}°C</p>
             <p>Temp. Min</p>
         </div>
-        <div class="wind current-child">
+        <div class="wind child">
             <p>N</p>
             <p class="wind-arrow">&#8595</p>
             <p>${data.wind.speed} m/s</p>
@@ -114,28 +114,31 @@ function fiveDayForecast(data) {
             
         if (date[1] === "12:00:00") {
 
-            var dayContent = 
+            console.log(this)
+
+            let dayContent = 
 
             `
-            <div class="weather-container">            
+            <section class="weather-container"            
                 <div class="name">
                     <h3>${data.city.name}</h3>
                     <p>${date[0]}</p>
                 </div>
-                <div class="conditions current-child">
+            <div class="forecast-content">
+                <div class="conditions child">
                     <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Icon of ${data.list[i].weather[0].description}">
                     <p>${data.list[i].weather[0].description}</p>
                 </div>
-                <div class="temp forecast-content">
+                <div class="temp child">
                     <p>${data.list[i].main.temp}°C</p>
                     <p>Max Temp</p>
                     <p>${data.list[i].main.humidity}%</p>
                     <p>Humidity</p>
                 </div>
-                <div class="wind current-child">
+                <div class="wind child">
                     <p>N</p>
                     <p class="wind-arrow">&#8595</p>
-                    <p>${data.list.wind.speed} MPH</p>
+                    <p>${data.list[i].wind.speed} m/s</p>
                 </div>
             </div>
             `
@@ -144,41 +147,9 @@ function fiveDayForecast(data) {
             newDay.innerHTML = dayContent
 
             fiveDayEl.appendChild(newDay)
+            windArrow(data.list[i].wind.deg)
         }
     }
-
-
-    // const day = 
-    // `
-
-
-    // <div class="weather-display">
-
-        // <div class="conditions current-child">
-        //     <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Icon of ${data.weather[0].description}">
-        //     <p>${data.weather[0].description}</p>
-        // </div>
-
-    // <div class="temp current-child">
-    //     <p>${data.main.temp}°C</p>
-    //     <p>Current Temp</p>
-    //     <p>${data.main.humidity}%</p>
-    //     <p>Current Humidity</p>
-    // </div>
-
-    //     <div class="t-max-min temp current-child">
-    //         <p>${data.main.temp_max}°C</p>
-    //         <p>Temp. Max</p>
-    //         <p>${data.main.temp_min}°C</p>
-    //         <p>Temp. Min</p>
-    //     </div>
-        // <div class="wind current-child">
-        //     <p>N</p>
-        //     <p class="wind-arrow">&#8595</p>
-        //     <p>${data.wind.speed} MPH</p>
-        // </div>
-    // </div>
-    // `
 }
 
 function windArrow(deg) {

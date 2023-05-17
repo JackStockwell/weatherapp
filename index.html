@@ -42,31 +42,31 @@
         <section id="weather-div">
             <h2>Current Weather</h2>
             <section class="current-weather weather-container">
-                <div class="current-name">
+                <div>
                     <h3>Example</h3>
                     <p>DAYY</p>
                 </div>
                 <div class="current-display">
             
-                    <div class="conditions current-child">
+                    <div class="conditions child">
                         <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Icon of ${data.weather[0].description}">
                         <p>Sunny Spells</p>
                     </div>
             
-                    <div class="temp current-child">
+                    <div class="temp child">
                         <p>20°C</p>
                         <p>Current Temp</p>
                         <p>50%</p>
                         <p>Current Humidity</p>
                     </div>
             
-                    <div class="t-max-min temp current-child">
+                    <div class="t-max-min temp child">
                         <p>22°C</p>
                         <p>T.Max</p>
                         <p>16°C</p>
                         <p>T.Min</p>
                     </div>
-                    <div class="wind current-child">
+                    <div class="wind child">
                         <p>N</p>
                         <p class="wind-arrow">&#8595</p>
                         <p>2 MPH</p>
@@ -75,22 +75,24 @@
             </section>
             <h2>5 Day Forecast</h2>
             <section class="forecast-weather">
-                <div class="weather-container">            
+                <section class="weather-container">
                     <div class="name">
                         <h3>London</h3>
                         <p>Date</p>
                     </div>
-                    <div class="conditions current-child">
-                        <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Icon of">
-                        <p>Rain</p>
+                    <div class="forecast-content">    
+                        <div class="conditions child">
+                            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Icon of">
+                            <p>Rain</p>
+                        </div>
+                        <div class="temp child">
+                            <p>17°C</p>
+                            <p>Max Temp</p>
+                            <p>55%%</p>
+                            <p>Humidity</p>
+                        </div>
                     </div>
-                    <div class="temp forecast-content">
-                        <p>17°C</p>
-                        <p>Max Temp</p>
-                        <p>55%%</p>
-                        <p>Humidity</p>
-                    </div>
-                </div>           
+                </section>           
             </section>
         </section>
 
