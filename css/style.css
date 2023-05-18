@@ -250,14 +250,31 @@ h2, h3 {
     transform: scale(2);
 }
 
+/* FOOTER */
+
 footer {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: fixed;
     width: 100%;
     bottom: 0;
-    
+    background: var(--background-dark);
+    height: 10ch;
+}
 
+footer p {
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000000;
+    border: var(--accent) solid 2px;
+    border-radius: 10px;
+    padding: 5px;
+    background: var(--accent);
 }
 
 @media (min-width: 50em) {
