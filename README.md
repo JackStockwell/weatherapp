@@ -10,4 +10,14 @@ This project allowed me to continue to build my knowledgeo of working with third
 
 [Coolors](https://coolors.co/palette/05668d-028090-00a896-02c39a-f0f3bd) - For the color styles.
 
+[Background images](https://app.haikei.app/) - Generates SVG backgrounds
+
 [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) - Used to add an event listner for the list items.
+
+[Mozilla MDN](https://developer.mozilla.org/en-US/docs/Web) - Used for continued referencing for HTML, CSS and JavaScript.
+
+[Softauthor](https://softauthor.com/create-html-element-in-javascript/) - A how to on HTML Generation with JS
+
+[Open Weather](https://openweathermap.org/api) - The API used to generate the weather and obtain the location.
+
+[Dayjs](https://day.js.org/en/) - Used to get the current day.
