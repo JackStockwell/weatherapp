@@ -23,20 +23,19 @@ function newSearch (event) {
 }
 
 function locationSearch(location) {
-    console.log(location)
+
     var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weatherKey}`
-    console.log(apiURL)
+
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             var currentLat = data[0].lat;
             var currentLon = data[0].lon;
             weatherCurrent(currentLat, currentLon);
             weatherFiveDay(currentLat, currentLon);
         })
 }
-
+// Gets the current weather when parsed the lat and lon from openweather API.
 function weatherCurrent(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`
     fetch(apiURL)
@@ -45,7 +44,7 @@ function weatherCurrent(lat, lon) {
             currentWeather(data)
         })
 }
-
+// Gets the weather for the next 5 dats when parsed the lat and lon from openweather API
 function weatherFiveDay(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`
     console.log(apiURL);
@@ -56,10 +55,12 @@ function weatherFiveDay(lat, lon) {
     });
 }
 
+// Gets the currentWeatherEl
 var currentWeatherEl = document.getElementsByClassName('current-weather')
 
+// Generates the HTML for the current weather with the data parsed.
 function currentWeather(data) {
-
+    // Creates a template literal that uses the parsed data to create the HTML 
     const currWeather = 
     `
     <div class="name">
@@ -89,18 +90,19 @@ function currentWeather(data) {
         </div>
         <div class="wind child">
             <p>N</p>
-            <p class="wind-arrow">&#8595</p>
+            <p class="wind-arrow tag-current">&#8595</p>
             <p>${data.wind.speed} m/s</p>
         </div>
     </div>
     `
+    // Populates
     currentWeatherEl[0].innerHTML = currWeather
+    var current = "current"
 
-    windArrow(data.wind.deg)
+    windArrow(data.wind.deg, current)
 }
 
 var fiveDayEl = document.querySelector('.forecast-weather')
-console.log(fiveDayEl)
 
 function fiveDayForecast(data) {
     // Date, icon, temp, wind and humidity
@@ -109,51 +111,52 @@ function fiveDayForecast(data) {
 
     console.log(data)
     for (i = 0; 0 < data.list.length; i++) {
-            
+        if (data.list[i] === undefined) {
+            return;
+        } else {
             let date = data.list[i].dt_txt.split(' ')
-            
-        if (date[1] === "12:00:00") {
 
-            console.log(this)
+            if (date[1] === "12:00:00") {
 
-            let dayContent = 
+                let dayContent = 
 
-            `
-            <section class="weather-container"            
-                <div class="name">
-                    <h3>${data.city.name}</h3>
-                    <p>${date[0]}</p>
+                `
+                <section class="weather-container"            
+                    <div class="name">
+                        <h3>${data.city.name}</h3>
+                        <p>${date[0]}</p>
+                    </div>
+                <div class="forecast-content">
+                    <div class="conditions child">
+                        <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Icon of ${data.list[i].weather[0].description}">
+                        <p>${data.list[i].weather[0].description}</p>
+                    </div>
+                    <div class="temp child">
+                        <p>${data.list[i].main.temp}°C</p>
+                        <p>Max Temp</p>
+                        <p>${data.list[i].main.humidity}%</p>
+                        <p>Humidity</p>
+                    </div>
+                    <div class="wind child">
+                        <p>N</p>
+                        <p class="wind-arrow tag-${[i]}">&#8595</p>
+                        <p>${data.list[i].wind.speed} m/s</p>
+                    </div>
                 </div>
-            <div class="forecast-content">
-                <div class="conditions child">
-                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Icon of ${data.list[i].weather[0].description}">
-                    <p>${data.list[i].weather[0].description}</p>
-                </div>
-                <div class="temp child">
-                    <p>${data.list[i].main.temp}°C</p>
-                    <p>Max Temp</p>
-                    <p>${data.list[i].main.humidity}%</p>
-                    <p>Humidity</p>
-                </div>
-                <div class="wind child">
-                    <p>N</p>
-                    <p class="wind-arrow">&#8595</p>
-                    <p>${data.list[i].wind.speed} m/s</p>
-                </div>
-            </div>
-            `
+                `
 
-            var newDay = document.createElement('div')
-            newDay.innerHTML = dayContent
+                var newDay = document.createElement('div')
+                newDay.innerHTML = dayContent
 
-            fiveDayEl.appendChild(newDay)
-            windArrow(data.list[i].wind.deg)
+                fiveDayEl.appendChild(newDay)
+                windArrow(data.list[i].wind.deg, [i])
+            }
         }
     }
 }
 
-function windArrow(deg) {
-    var wind = document.querySelector('.wind-arrow')
+function windArrow(deg, tag) {
+    var wind = document.querySelector(`.tag-${tag}`)
     wind.style.transform = `rotate(${deg}deg)`
 }
 
