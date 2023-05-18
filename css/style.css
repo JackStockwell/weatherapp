@@ -4,15 +4,30 @@
     padding: 0;
 }
 
+/* Variables */
+
 :root {
     --background-dark: #00000080;
     --background-light: #028090;
     --light: #f0f3bd80;
     --fontlight: 'Roboto Condensed', sans-serif;
     --fontheader: 'Roboto', sans-serif;
-    --h2color: #fff;
+    --hcolor: #fff;
     --padding: 1rem;
+    --paddinghalf: 0.5rem;
 }
+
+/* GENERAL */
+
+h1, h2, h3, h4, h5 ,h6 {
+    font-family: var(--fontheader);
+}
+
+body {
+    background: center / cover no-repeat url(../assets/backgrounds/background16.9.svg);    
+}
+
+/* HEADER */
 
 header {
     display: flex;
@@ -27,24 +42,18 @@ header h1 {
     border-radius: 0.5rem;
     border: 2px solid var(--background-light);
     background: var(--background-dark);
-    color: var(--h2color);
+    color: var(--hcolor);
     text-transform: uppercase;
 }
 
-h1, h2, h3, h4, h5 ,h6 {
-    font-family: var(--fontheader);
-}
-
-body {
-    background: center / cover no-repeat url(../assets/backgrounds/background16.9.svg);    
-}
+/* MAIN */
 
 main {
     width: 90%;
     margin: 0 auto;
     display: grid;
     font-family: sans-serif;
-    gap: 1rem;
+    gap: var(--padding);
     grid-template-columns: 1fr;
     font-family: var(--fontlight);
 }
@@ -55,17 +64,76 @@ h2 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.15ch;
-    color: var(--h2color);
-    margin: 0.5rem;
+    color: var(--hcolor);
+    margin: var(--paddinghalf);
 }
 
 /* CONTAINERS */
 
 /* SEARCH CARDS */
 
-.search-box-content {
-    background: var(--light);
-    margin: 1rem 0;
+#search-form {
+    display: flex;
+}
+
+/* FORM */
+
+#location-text {
+    width: 100%;
+    padding: 5px;
+    background: transparent;
+    outline: 0;
+    border: 0;
+    border-bottom: var(--background-light) solid 2px;
+}
+
+#location-text:focus {
+    background: transparent;
+    outline: 0;
+    border: 0;
+    border-bottom: var(--background-light) solid 2px;
+}
+
+::placeholder {
+    color: #000000ab;
+}
+
+#search-button {
+    padding: 5px;
+    background: transparent;
+    outline: 0;
+    border: 0;
+    color: #000000ab;
+    border-bottom: var(--background-light) solid 2px;
+    box-shadow: inset 0 0 0 0 var(--background-light);
+    transition: box-shadow 300ms ease;
+}
+
+#search-button:hover {
+    box-shadow: inset 0 -40px 0 0 var(--background-light);
+    cursor: pointer;
+}
+
+/* RECENT SEARCHES */
+
+.recent-searches-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.recent-searches-div h3 {
+    color: var(--h2color);
+}
+
+.recent {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.recent li {
+    /* text-align: center; */
+    list-style: none;
+    padding: var(--padding);
 }
 
 /* WEATHER CARDS */
@@ -80,6 +148,44 @@ h2 {
 
 /* CURRENT WEATHER */
 
+.current-display {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.current-display div:nth-child(-n + 3) {
+    border-right: var(--background-light) solid 2px;
+}
+
+/* FIVE DAY FORECAST */
+
+.time-taken {
+    text-align: center;
+    color: var(--h2color);
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.forecast-weather {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.forecast-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.forecast-content div:nth-child(-n + 2) {
+    border-bottom: var(--background-light) solid 2px;
+}
+
+/* WEATHER CONTAINER CHILDREN */
+
 .child {
     display: flex;
     flex-flow: column nowrap;
@@ -92,23 +198,12 @@ h2 {
     padding: 0.5rem 0
 }
 
-.current-display {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-}
+/* NAME */
 
-/* FIVE DAY FORECAST */
-
-.forecast-weather {
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-.forecast-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+.name {
+    text-align: center;
+    padding: var(--paddinghalf);
+    border-bottom: var(--background-light) solid 2px;
 }
 
 /* CONDITIONS */
@@ -139,7 +234,7 @@ h2 {
     transform: scale(2);
 }
 
-@media (min-width: 40em) {
+@media (min-width: 50em) {
     main {
         grid-template-rows: auto;
         grid-template-columns: 1fr 2fr;
