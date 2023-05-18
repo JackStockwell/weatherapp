@@ -121,7 +121,7 @@ function fiveDayForecast(data) {
                 let dayContent = 
 
                 `
-                <section class="weather-container"            
+                <section class="weather-container">            
                     <div class="name">
                         <h3>${data.city.name}</h3>
                         <p>${date[0]}</p>
@@ -133,7 +133,7 @@ function fiveDayForecast(data) {
                     </div>
                     <div class="temp child">
                         <p>${data.list[i].main.temp}°C</p>
-                        <p>Max Temp</p>
+                        <p>Temp</p>
                         <p>${data.list[i].main.humidity}%</p>
                         <p>Humidity</p>
                     </div>
@@ -141,6 +141,7 @@ function fiveDayForecast(data) {
                         <p>N</p>
                         <p class="wind-arrow tag-${[i]}">&#8595</p>
                         <p>${data.list[i].wind.speed} m/s</p>
+                        <p><i>Wind direction & Speed</i><p>
                     </div>
                 </div>
                 `

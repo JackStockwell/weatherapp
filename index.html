@@ -23,14 +23,14 @@
                 <div>
                     <p>Enter your town/city in the box below to get the latest weather conditions and a five day forecast.</p>
                     <br>
-                    <form onsubmit="newSearch(event)">
-                        <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\- ]+" title="Invalid input">
+                    <form id="search-form" onsubmit="newSearch(event)">
+                        <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\- ]+" title="Invalid input" placeholder="Enter your location here">
                         <br>
                         <input id="search-button" clas="btn" type="submit" value="Search">
                     </form>
                     <h3 class="invalid-loc"></h3>
                 </div>
-                <div>
+                <div class="recent-searches-div">
                     <h3>Recent Searches</h3>
                     <ul class="recent">
                         <li>London</li>
@@ -74,6 +74,7 @@
                 </div>
             </section>
             <h2>5 Day Forecast</h2>
+            <p class="time-taken">Taken at 12PM</p>
             <section class="forecast-weather">
                 <section class="weather-container">
                     <div class="name">
