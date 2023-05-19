@@ -23,7 +23,7 @@
                 <div>
                     <p>Enter your town/city in the box below to get the latest weather conditions and a five day forecast.</p>
                     <br>
-                    <form id="search-form" onsubmit="newSearch(event)">
+                    <form id="search-form" onsubmit="newSearch(event), loadRecent()">
                         <input name="location" id="location-text" class="input" type="text" pattern="[A-Za-z\- ]+" title="Invalid input" placeholder="Enter your location here">
                         <br>
                         <input id="search-button" clas="btn" type="submit" value="Search">
@@ -52,7 +52,7 @@
         </section>
     </main>
     <footer>
-        <p>Made by <a href="https://github.com/JackStockwell">Jack Stockwell</a></p>
+        <p>Made by <a href="https://github.com/JackStockwell">Jack Stockwell<img src="./assets/icons/iconmonstr-github-3.svg"></a></p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js" integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/script.js"></script>

@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5 ,h6 {
 body {
     background: center / cover no-repeat url(../assets/backgrounds/background16.9.svg);    
     min-height: 100vh;
+    font-family: var(--fontlight);
 }
 
 /* HEADER */
@@ -52,23 +53,29 @@ header h1 {
 /* MAIN */
 
 main {
-    width: 90%;
     margin: 0 auto;
+    width: 95%;
     display: grid;
+    justify-content: center;
     font-family: sans-serif;
     gap: var(--padding);
     grid-template-columns: 1fr;
-    font-family: var(--fontlight);
+    max-width: 110rem;
 }
 
 /* USED FOR ALL SUB HEADERS */
 
-h2, h3 {
+h2 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.15ch;
     color: var(--hcolor);
     margin: var(--paddinghalf);
+}
+
+h3 {
+    text-transform: uppercase;
+    color: var(--hcolor);
 }
 
 /* CONTAINERS */
@@ -132,7 +139,7 @@ h2, h3 {
 
 .recent {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column-reverse nowrap;
     gap: 0.5rem;
 }
 
@@ -194,10 +201,11 @@ h2, h3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .forecast-content div:nth-child(-n + 2) {
-    border-bottom: var(--border);
+    border-right: var(--border);
 }
 
 /* WEATHER CONTAINER CHILDREN */
@@ -269,23 +277,30 @@ footer p {
 }
 
 footer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: #000000;
     border: var(--accent) solid 2px;
     border-radius: 10px;
-    padding: 5px;
     background: var(--accent);
+    padding: 0 0 0 3px;
 }
 
-@media (min-width: 50em) {
+footer img {
+    position: relative;
+    padding: 3px;
+}
+
+/* MEDIA QUERIES FOR LARGE SCREEN*/
+
+@media (min-width: 90em) {
     main {
         grid-template-rows: auto;
         grid-template-columns: 1fr 2fr;
-        grid-template-areas: unset;
     }
-}
 
-@media (min-width: 70em) {
     .forecast-weather {
         display: grid;
         grid-template-columns: repeat(5 , 1fr);
@@ -296,6 +311,36 @@ footer a {
     .forecast-content {
         display: flex;
         flex-flow: column nowrap;
+        gap: 0.5rem;
     }
+
+    .forecast-content div:nth-child(-n + 2) {
+        border-bottom: var(--border);
+        border-right: none;
+    }
+}
+
+/* MEDIA QUERIES FOR SMALL SCREEN */
+
+@media (max-width: 40em) {
+    .current-display {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .current-display div:nth-child(-n + 3) {
+        border-bottom: var(--border);
+        border-right: none;
+    }
+
+    .forecast-content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .forecast-content div:nth-child(-n + 2) {
+        border-bottom: var(--border);
+        border-right: none;
+    }
+
+
 }
     
