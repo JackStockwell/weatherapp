@@ -7,31 +7,38 @@ const weatherDayMax = 5;
 
 let recentSearchData = []
 
-// Event listener to take the inputted text value from the search bar
-var recentListEl = document.querySelector('.recent')
-// Loads the recent local storage data, it will parse it then create HTML to display it in page.
+// Loads the recent local storage data.
 function loadRecent() {
-    console.log(recentListEl)
     var localData = JSON.parse(localStorage.getItem("recentSearch"))
     if (localData !== null) {
         recentSearchData = localData
-        let recent5 = recentSearchData.slice(-5)
-        console.log(recent5)
-        for (i = 0; i < recent5.length; i++) {
-            let name = recent5[i]
-            let listEl = document.createElement('li')
-            listEl.innerHTML = name
-            recentListEl.appendChild(listEl);
-        }
     }
-    return;
 }
-
-loadRecent()
 
 // Saves the current array to localstorage.
 function saveRecent() {
-    localStorage.setItem('recentSearch', JSON.stringify(recentSearchData))
+    let lastFive = recentSearchData.splice(-5)
+    localStorage.setItem('recentSearch', JSON.stringify(lastFive))
+    renderList();
+}
+
+// Event listener to take the inputted text value from the search bar
+const recentListEl = document.getElementsByClassName('recent')
+
+// Renders the list in HTMl.
+function renderList() {
+    // Retrieves JSON.
+    loadRecent()
+    // Clears HTML of any list items.
+    recentListEl[0].innerHTML = ""
+    // Splits the array to 5 only.
+    console.log(recentSearchData)
+
+    for (i = 0; i < recentSearchData.length; i++) {   
+        var listEl = document.createElement('li')
+        listEl.textContent = recentSearchData[i];
+        recentListEl[0].appendChild(listEl)
+    }
 }
 
 // Gets the currentWeatherEl
@@ -146,6 +153,13 @@ function windArrow(deg, tag) {
 // Searches the API for a location matching the parsed value.
 function locationSearch(location) {
 
+    let locationValue = location
+    
+    recentSearchData.push(locationValue)
+    console.log(recentSearchData)
+
+    saveRecent();
+
     var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weatherKey}`
 
     fetch(apiURL)
@@ -169,7 +183,6 @@ function weatherCurrent(lat, lon) {
 // Gets the weather for the next 5 dats when parsed the lat and lon from openweather API. Works on a promise, waiting for a response.
 function weatherFiveDay(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`
-    console.log(apiURL);
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
@@ -193,17 +206,12 @@ function newSearch (event) {
         }, 2000)
         return;
     } else {
-        // Save value to local storage
-        recentSearchData.push(location)
-        saveRecent()
         locationSearch(location)
     }
 }
 
-var liEle = document.querySelectorAll('li')
-
-liEle.forEach((element) => {
-    element.addEventListener("click", (event) => {
-        locationSearch(event.target.innerText)
-    })
+recentListEl[0].addEventListener("click", (event) => {
+    locationSearch(event.target.innerText)
 })
+
+renderList()

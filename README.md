@@ -4,7 +4,17 @@ The Pocket Weather website when given a location will get the current weather ob
 
 The motivation behind this project was to use third-party APIs to process and then display the information that I recieve from them on my webpage by dynamically creating HTML that consists of the data derived from the API. This allows for up to date information to be displayed whenenver the website is called upon.
 
-This project allowed me to continue to build my knowledgeo of working with third-party APIs, and using the data recieved from them  
+This project allowed me to continue to build my knowledgeo of working with third-party APIs, and using the data recieved from them.
+
+I am particularly proud of the wind arrows, which change depending on the deg that is fed to them using the API. I believe this would make it stand out to other users.
+
+## Screenshots
+
+![Gif of the website in action, searching using recent searches ]
+
+## Usage
+
+Please use the 
 
 ## Credits
 
@@ -21,3 +31,5 @@ This project allowed me to continue to build my knowledgeo of working with third
 [Open Weather](https://openweathermap.org/api) - The API used to generate the weather and obtain the location.
 
 [Dayjs](https://day.js.org/en/) - Used to get the current day.
+
+[Icon Monster](https://iconmonstr.com/) - Used for the GitHub icon.
