@@ -10,11 +10,11 @@ I am particularly proud of the wind arrows, which change depending on the deg th
 
 ## Screenshots
 
-![Gif of the website in action, searching using recent searches ]
+![Gif of the website in action, searching using recent searches](./assets/screenshots/home.gif)
 
 ## Usage
 
-Please use the 
+Head to [here](https://jackstockwell.github.io/weatherapp/) to use the weather APP. Start by searching for a location and let the magic happen!
 
 ## Credits
 
@@ -33,3 +33,11 @@ Please use the
 [Dayjs](https://day.js.org/en/) - Used to get the current day.
 
 [Icon Monster](https://iconmonstr.com/) - Used for the GitHub icon.
+
+## License
+
+N/A
+
+## Future Development
+
+- Would enjoy some more animations, espically on content load.
