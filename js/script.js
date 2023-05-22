@@ -1,6 +1,5 @@
 // API Key Vars
 
-const weatherKey = '632b6159be10915c53139465f83c756e';
 const weatherDayMax = 5;
 
 // Local storage array
