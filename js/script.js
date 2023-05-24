@@ -6,6 +6,10 @@ const weatherDayMax = 5;
 
 let recentSearchData = []
 
+// Query Selector
+
+const invalidHeader = document.querySelector('.invalid-loc')
+
 // Loads the recent local storage data.
 function loadRecent() {
     var localData = JSON.parse(localStorage.getItem("recentSearch"))
@@ -151,23 +155,29 @@ function windArrow(deg, tag) {
 
 // Searches the API for a location matching the parsed value.
 function locationSearch(location) {
-
-    let locationValue = location
     
-    recentSearchData.push(locationValue)
-    console.log(recentSearchData)
-
-    saveRecent();
-
     var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weatherKey}`
 
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            var currentLat = data[0].lat;
-            var currentLon = data[0].lon;
-            weatherCurrent(currentLat, currentLon);
-            weatherFiveDay(currentLat, currentLon);
+            if (data.length === 0) {
+                window.alert("Please select a correct location!")
+                return;
+            } else {
+                const currentLat = data[0].lat;
+                const currentLon = data[0].lon;
+                // Checks to see if the serach is already in recent searches. Will not push the location if it matches.
+                if (recentSearchData.includes(location)) {
+                    weatherCurrent(currentLat, currentLon);
+                    weatherFiveDay(currentLat, currentLon);
+                } else {
+                    recentSearchData.push(location)
+                    saveRecent();
+                    weatherCurrent(currentLat, currentLon);
+                    weatherFiveDay(currentLat, currentLon);
+                }               
+            }
         })
 }
 // Gets the current weather when parsed the lat and lon from openweather API. Works on a promise, waiting for a response.
@@ -176,6 +186,7 @@ function weatherCurrent(lat, lon) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             currentWeather(data)
         });
 }
@@ -185,7 +196,7 @@ function weatherFiveDay(lat, lon) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            fiveDayForecast(data)
+            fiveDayForecast(data);
         });
 }
 
@@ -198,12 +209,13 @@ function newSearch (event) {
     event.preventDefault()
     const location = locationInputEl.value
     if (location === "") {
-        invalidHeader = document.querySelector('.invalid-loc')
         invalidHeader.innerText = "Please select a correct location!"
         setTimeout(() => {
             invalidHeader.innerText = ""
         }, 2000)
-        return;
+        return;       
+    } else if (location === undefined) {
+        invalidHeader.innerText = "Please select a correct location!"
     } else {
         locationSearch(location)
     }
