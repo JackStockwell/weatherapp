@@ -4,7 +4,7 @@ The Pocket Weather website when given a location will get the current weather ob
 
 The motivation behind this project was to use third-party APIs to process and then display the information that I recieve from them on my webpage by dynamically creating HTML that consists of the data derived from the API. This allows for up to date information to be displayed whenenver the website is called upon.
 
-This project allowed me to continue to build my knowledgeo of working with third-party APIs, and using the data recieved from them.
+This project allowed me to continue to build my knowledgeo of working with third-party APIs, and using the data recieved from them. It includes logic to ensure that if the location failed, then the user is informed.
 
 I am particularly proud of the wind arrows, which change depending on the deg that is fed to them using the API. I believe this would make it stand out to other users.
 
@@ -15,6 +15,12 @@ I am particularly proud of the wind arrows, which change depending on the deg th
 ## Usage
 
 Head to [here](https://jackstockwell.github.io/weatherapp/) to use the weather APP. Start by searching for a location and let the magic happen!
+
+In order to use, you will need a Openweather API key from [here](https://openweathermap.org/api). Make a file named 'key.js' in the js folder, inside place the following syntax with your API key subsidied.
+
+```javascript
+const weatherKey = 'YOUR_API_KEY_HERE';
+```
 
 ## Credits
 
