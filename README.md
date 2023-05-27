@@ -16,7 +16,7 @@ I am particularly proud of the wind arrows, which change depending on the deg th
 
 Head to [here](https://jackstockwell.github.io/weatherapp/) to use the weather APP. Start by searching for a location and let the magic happen!
 
-In order to use, you will need a Openweather API key from [here](https://openweathermap.org/api). Make a file named 'key.js' in the js folder, inside place the following syntax with your API key subsidied.
+In order to use, you will need a Openweather API key from [here](https://openweathermap.org/api). Please place your API key in the script.js file in line 3.
 
 ```javascript
 const weatherKey = 'YOUR_API_KEY_HERE';
